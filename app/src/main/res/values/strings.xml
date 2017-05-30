@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Tictactoe</string>
+    <string name="easy">Fácil</string>
+    <string name="medium">Médio</string>
+    <string name="hard">Difícil</string>
+    <string name="info">Bruno Colombini - 2017 - Desafio Gazeus</string>
+    <string name="appName">TIC-TAC-TOE</string>
+</resources>
