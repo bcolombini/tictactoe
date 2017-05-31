@@ -177,7 +177,7 @@ public class GameActivity extends AppCompatActivity {
         if (!s.equals("o")) {
             robotScore++;
             robotScoreTextView.setText("Computador: " + robotScore);
-        } else if (!s.equals("o")) {
+        } else if (s.equals("o")) {
             humanScore++;
             humanScoreTextView.setText("Humano: " + humanScore);
         } else {
