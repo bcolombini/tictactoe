@@ -32,15 +32,13 @@ public class WeightCalculate {
         if (!isComputer) calculateWeight(true);
     }
 
-    public String getBetterWay(boolean isImpossible) {
+    public String getBetterWay() {
         Weight betterWay = null;
         for (Weight weight : positionFinish.getWinArray()) {
             if (betterWay == null) {
                 betterWay = weight;
             }
             if (weight.getCount() > 1) {
-                betterWay = weight;
-            } else if (weight.getCount() == -1 && betterWay.getCount() != 2 && betterWay.getCount() != -1 && isImpossible) {
                 betterWay = weight;
             } else if (weight.getCount() == -2) {
                 betterWay = weight;

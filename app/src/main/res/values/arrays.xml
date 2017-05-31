@@ -3,7 +3,7 @@
     <string-array name="level">
         <item>Fácil</item>
         <item>Medio</item>
-        <item>Impossível</item>
+        <item>Difícil</item>
     </string-array>
 
 </resources>

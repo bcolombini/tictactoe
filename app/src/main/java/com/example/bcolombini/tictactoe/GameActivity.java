@@ -7,12 +7,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.bcolombini.tictactoe.util.LevelImp;
 import com.example.bcolombini.tictactoe.util.WinnerImp;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import com.example.bcolombini.tictactoe.util.level.*;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +24,7 @@ import static android.support.v7.app.AlertDialog.Builder;
 public class GameActivity extends AppCompatActivity {
 
     private WinnerImp winnerImp = new WinnerImp();
-    private LevelImp levelImp = new LevelImp();
+    private Level levelImp;
 
     @BindView(R.id.bt00)
     Button bt00;
@@ -68,12 +69,18 @@ public class GameActivity extends AppCompatActivity {
         board.put("2-0", bt20);
         board.put("2-1", bt21);
         board.put("2-2", bt22);
+
+        levelImp = new LevelEasy(board);
     }
 
     private boolean markTurn(int x, int y) {
         Button bt = board.get(x + "-" + y);
         if (!TextUtils.isEmpty(bt.getText())) {
             return false;
+        }
+        bt.setTextColor(getResources().getColor(R.color.bola));
+        if (flag.equals("x")) {
+            bt.setTextColor(getResources().getColor(R.color.xis));
         }
         bt.setText(flag);
         changeTurn();
@@ -116,7 +123,9 @@ public class GameActivity extends AppCompatActivity {
                 break;
         }
         if (isFinished()) return;
-        if (!flag.equals("x")) levelClick();
+        if (!flag.equals("x")) {
+            levelClick();
+        }
     }
 
     private boolean isFinished() {
@@ -137,10 +146,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void levelClick() {
-        levelImp.setBoard(board);
-        levelImp.choiceLevel(level);
-        int x = levelImp.getPosition().get("x");
-        int y = levelImp.getPosition().get("y");
+        reloadLevel(level);
+        HashMap<String,Integer> position = levelImp.getMove();
+        int x = position.get("x");
+        int y = position.get("y");
         if (!markTurn(x, y)) {
             levelClick();
         }
@@ -191,6 +200,18 @@ public class GameActivity extends AppCompatActivity {
         levelImp.clearHistory();
     }
 
+    private void reloadLevel(int which) {
+        switch (which) {
+            case 0:
+                levelImp = new LevelEasy(board);
+                break;
+            case 1:
+                levelImp = new LevelMedium(board);
+                break;
+            case 2:
+                levelImp = new LevelHard(board);
+                break;
+            default:
+        }
+    }
 }
-
-

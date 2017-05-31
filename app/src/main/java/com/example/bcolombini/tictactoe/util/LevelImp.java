@@ -13,6 +13,7 @@ import java.util.Random;
 public class LevelImp implements LevelInterface {
 
     PositionFinish positionFinish;
+
     WeightCalculate weightCalculate;
 
     private HashMap<String, Integer> position = new HashMap<>();
@@ -71,7 +72,6 @@ public class LevelImp implements LevelInterface {
         return position;
     }
 
-    //Futuro Medio
     private HashMap<String, Integer> medium() {
         HashMap<String, Integer> position = new HashMap<>();
 
@@ -83,10 +83,11 @@ public class LevelImp implements LevelInterface {
             }
         }
 
+
         weightCalculate.setPositionFinish(positionFinish);
         weightCalculate.calculateWeight(false);
 
-        return getPosition(weightCalculate.getBetterWay(false));
+        return getPosition(weightCalculate.getBetterWay());
 
     }
 
@@ -94,17 +95,18 @@ public class LevelImp implements LevelInterface {
         HashMap<String, Integer> position = new HashMap<>();
 
         if (!boardGame.containsValue("o")) {
-            if (boardGame.get("0-0").equals("x") || boardGame.get("0-2").equals("x") || boardGame.get("2-0").equals("x") || boardGame.get("2-2").equals("x")) {
+            if (TextUtils.isEmpty(boardGame.get("1-1"))) {
                 position.put("x", 1);
                 position.put("y", 1);
                 return position;
             }
         }
 
+
         weightCalculate.setPositionFinish(positionFinish);
         weightCalculate.calculateWeight(false);
 
-        return getPosition(weightCalculate.getBetterWay(true));
+        return getPosition(weightCalculate.getBetterWay());
     }
 
     private HashMap<String, Integer> getPosition(String method) {
