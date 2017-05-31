@@ -78,21 +78,7 @@ public class LevelImp implements LevelInterface {
             }
         }
 
-        for (Weight weight : winArray) {
-            for (String cp : humanHistory) {
-                if (weight.getMethod().contains(cp)) {
-                    weight.setCount(weight.getCount() + 1);
-                }
-            }
-        }
-
-        for (Weight weight : winArray) {
-            for (String hp : computerHistory) {
-                if (weight.getMethod().contains(hp)) {
-                    weight.setCount(weight.getCount() - 1);
-                }
-            }
-        }
+        calculateWeight(false);
 
         Weight betterWay = null;
         for (Weight weight : winArray) {
@@ -124,6 +110,7 @@ public class LevelImp implements LevelInterface {
     }
 
 
+
     //Impossivel
     private HashMap<String, Integer> hard() {
         HashMap<String, Integer> position = new HashMap<>();
@@ -137,21 +124,8 @@ public class LevelImp implements LevelInterface {
             }
         }
 
-        for (Weight weight : winArray) {
-            for (String cp : humanHistory) {
-                if (weight.getMethod().contains(cp)) {
-                    weight.setCount(weight.getCount() + 1);
-                }
-            }
-        }
+        calculateWeight(false);
 
-        for (Weight weight : winArray) {
-            for (String hp : computerHistory) {
-                if (weight.getMethod().contains(hp)) {
-                    weight.setCount(weight.getCount() - 1);
-                }
-            }
-        }
 
         Weight betterWay = null;
         for (Weight weight : winArray) {
