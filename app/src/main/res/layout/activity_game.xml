@@ -2,13 +2,46 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_game"
-    android:padding="16dp"
     android:layout_width="match_parent"
-    android:background="@android:color/white"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:gravity="center"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context="com.example.bcolombini.tictactoe.GameActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="Score:" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/human_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Humano: " />
+
+        <TextView
+            android:id="@+id/tie_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Empate: " />
+
+        <TextView
+            android:id="@+id/robot_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Computador: " />
+    </LinearLayout>
 
     <Button
         android:id="@+id/bt_level"
@@ -21,36 +54,39 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button android:background="@android:color/white"
+        <Button
             android:id="@+id/bt00"
             style="@style/button"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/white" />
 
         <View
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@android:color/black" />
 
-        <Button android:background="@android:color/white"
+        <Button
             android:id="@+id/bt01"
             style="@style/button"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/white" />
 
         <View
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@android:color/black" />
 
-        <Button android:background="@android:color/white"
+        <Button
             android:id="@+id/bt02"
             style="@style/button"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/white" />
     </LinearLayout>
 
     <View
@@ -63,36 +99,39 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button android:background="@android:color/white"
+        <Button
             android:id="@+id/bt10"
             style="@style/button"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/white" />
 
         <View
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@android:color/black" />
 
-        <Button android:background="@android:color/white"
+        <Button
             android:id="@+id/bt11"
             style="@style/button"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/white" />
 
         <View
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@android:color/black" />
 
-        <Button android:background="@android:color/white"
+        <Button
             android:id="@+id/bt12"
             style="@style/button"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/white" />
     </LinearLayout>
 
     <View
@@ -105,36 +144,39 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button android:background="@android:color/white"
+        <Button
             android:id="@+id/bt20"
             style="@style/button"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/white" />
 
         <View
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@android:color/black" />
 
-        <Button android:background="@android:color/white"
+        <Button
             android:id="@+id/bt21"
             style="@style/button"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/white" />
 
         <View
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@android:color/black" />
 
-        <Button android:background="@android:color/white"
+        <Button
             android:id="@+id/bt22"
             style="@style/button"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/white" />
     </LinearLayout>
 
     <Button

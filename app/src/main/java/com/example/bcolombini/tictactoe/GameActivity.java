@@ -6,14 +6,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.bcolombini.tictactoe.util.WinnerImp;
+import com.example.bcolombini.tictactoe.util.level.Level;
+import com.example.bcolombini.tictactoe.util.level.LevelEasy;
+import com.example.bcolombini.tictactoe.util.level.LevelHard;
+import com.example.bcolombini.tictactoe.util.level.LevelMedium;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
-import com.example.bcolombini.tictactoe.util.level.*;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +27,16 @@ import static android.support.v7.app.AlertDialog.Builder;
 
 public class GameActivity extends AppCompatActivity {
 
+    @BindView(R.id.human_score)
+    TextView humanScoreTextView;
+    @BindView(R.id.tie_score)
+    TextView tieScoreTextView;
+    @BindView(R.id.robot_score)
+    TextView robotScoreTextView;
+    @BindView(R.id.reset_game)
+    Button resetGame;
+    @BindView(R.id.activity_game)
+    LinearLayout activityGame;
     private WinnerImp winnerImp = new WinnerImp();
     private Level levelImp;
 
@@ -51,6 +65,9 @@ public class GameActivity extends AppCompatActivity {
     private HashMap<String, Button> board;
     private String flag = "x";
     private int level = 0;
+    private int humanScore = 0;
+    private int tieScore = 0;
+    private int robotScore = 0;
 
 
     @Override
@@ -147,7 +164,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void levelClick() {
         reloadLevel(level);
-        HashMap<String,Integer> position = levelImp.getMove();
+        HashMap<String, Integer> position = levelImp.getMove();
         int x = position.get("x");
         int y = position.get("y");
         if (!markTurn(x, y)) {
@@ -157,6 +174,16 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void showDialog(String s, boolean drawFlag) {
+        if (!s.equals("o")) {
+            robotScore++;
+            robotScoreTextView.setText("Computador: " + robotScore);
+        } else if (!s.equals("o")) {
+            humanScore++;
+            humanScoreTextView.setText("Humano: " + humanScore);
+        } else {
+            tieScore++;
+            tieScoreTextView.setText("Empate: " + tieScore);
+        }
         s = !s.equals("o") ? "Você perdeu" : "Você ganhou";
         s = drawFlag ? "Empate" : s;
         new Builder(this)
