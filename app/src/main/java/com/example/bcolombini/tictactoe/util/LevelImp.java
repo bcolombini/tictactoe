@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.widget.Button;
 
 import com.example.bcolombini.tictactoe.util.configuration.PositionFinish;
+import com.example.bcolombini.tictactoe.util.configuration.WeightCalculate;
 import com.example.bcolombini.tictactoe.util.general.Weight;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.Random;
 public class LevelImp implements LevelInterface {
 
     PositionFinish positionFinish;
+    WeightCalculate weightCalculate;
 
     private HashMap<String, Integer> position = new HashMap<>();
 
@@ -24,6 +26,7 @@ public class LevelImp implements LevelInterface {
 
     @Override
     public void choiceLevel(int level) {
+        weightCalculate = new WeightCalculate(computerHistory, humanHistory);
         switch (level) {
             case 0:
                 position = easy();
@@ -81,28 +84,16 @@ public class LevelImp implements LevelInterface {
             }
         }
 
-        calculateWeight(false);
+        weightCalculate.setPositionFinish(positionFinish);
+        weightCalculate.calculateWeight(false);
 
-        Weight betterWay = null;
-        for (Weight weight : positionFinish.getWinArray()) {
-            if (betterWay == null) {
-                betterWay = weight;
-            }
-            if (weight.getCount() > betterWay.getCount()) {
-                betterWay = weight;
-            } else if (weight.getCount() == -2) {
-                betterWay = weight;
-                break;
-            }
-
-        }
+        Weight betterWay = getBetterWay(false);
 
 
         return getPosition(betterWay.getMethod());
 
     }
 
-    //Impossivel
     private HashMap<String, Integer> hard() {
         HashMap<String, Integer> position = new HashMap<>();
 
@@ -114,8 +105,15 @@ public class LevelImp implements LevelInterface {
             }
         }
 
-        calculateWeight(false);
+        weightCalculate.setPositionFinish(positionFinish);
+        weightCalculate.calculateWeight(false);
 
+        Weight betterWay = getBetterWay(true);
+
+        return getPosition(betterWay.getMethod());
+    }
+
+    private Weight getBetterWay(boolean isImpossible) {
         Weight betterWay = null;
         for (Weight weight : positionFinish.getWinArray()) {
             if (betterWay == null) {
@@ -123,7 +121,7 @@ public class LevelImp implements LevelInterface {
             }
             if (weight.getCount() > 1) {
                 betterWay = weight;
-            } else if (weight.getCount() == -1 && betterWay.getCount() != 2 && betterWay.getCount() != -1) {
+            } else if (weight.getCount() == -1 && betterWay.getCount() != 2 && betterWay.getCount() != -1 && isImpossible) {
                 betterWay = weight;
             } else if (weight.getCount() == -2) {
                 betterWay = weight;
@@ -131,8 +129,7 @@ public class LevelImp implements LevelInterface {
             }
 
         }
-
-        return getPosition(betterWay.getMethod());
+        return betterWay;
     }
 
     private HashMap<String, Integer> getPosition(String method) {
@@ -152,18 +149,4 @@ public class LevelImp implements LevelInterface {
         computerHistory = new ArrayList<>();
         humanHistory = new ArrayList<>();
     }
-
-    private void calculateWeight(boolean isComputer) {
-        ArrayList<String> history = isComputer ? computerHistory : humanHistory;
-        int sum = isComputer ? -1 : 1;
-        for (Weight weight : positionFinish.getWinArray()) {
-            for (String cp : history) {
-                if (weight.getMethod().contains(cp)) {
-                    weight.setCount(weight.getCount() + sum);
-                }
-            }
-        }
-        if (!isComputer) calculateWeight(true);
-    }
-
 }
