@@ -152,10 +152,12 @@ public class GameActivity extends AppCompatActivity {
         s = drawFlag ? "Empate" : s;
         new Builder(this)
                 .setTitle("Acabou")
+                .setCancelable(false)
                 .setMessage(s)
                 .setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        onClickClearGame();
                         dialog.dismiss();
                     }
                 })

@@ -28,10 +28,10 @@ public class PositionFinish {
 
         winArray.add(new Weight("0-0 - 1-1 - 2-2")); // Diagonal \
         winArray.add(new Weight("2-0 - 1-1 - 0-2")); // Diagonal /
-        removeIfLineIsComplete(winArray.size() - 1);
+        removeIfLineComplete(winArray.size() - 1);
     }
 
-    private void removeIfLineIsComplete(int i) {
+    private void removeIfLineComplete(int i) {
         if (i == -1) return;
         int a = 0;
         for (String key : boardGame.keySet()) {
@@ -41,9 +41,9 @@ public class PositionFinish {
         }
         if (a == 3) {
             winArray.remove(i);
-            removeIfLineIsComplete(winArray.size() - 1);
+            removeIfLineComplete(winArray.size() - 1);
         } else {
-            removeIfLineIsComplete(i - 1);
+            removeIfLineComplete(i - 1);
         }
     }
 
