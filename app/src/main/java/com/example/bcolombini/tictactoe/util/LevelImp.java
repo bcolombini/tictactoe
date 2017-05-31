@@ -5,7 +5,6 @@ import android.widget.Button;
 
 import com.example.bcolombini.tictactoe.util.configuration.PositionFinish;
 import com.example.bcolombini.tictactoe.util.configuration.WeightCalculate;
-import com.example.bcolombini.tictactoe.util.general.Weight;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,10 +86,7 @@ public class LevelImp implements LevelInterface {
         weightCalculate.setPositionFinish(positionFinish);
         weightCalculate.calculateWeight(false);
 
-        Weight betterWay = getBetterWay(false);
-
-
-        return getPosition(betterWay.getMethod());
+        return getPosition(weightCalculate.getBetterWay(false));
 
     }
 
@@ -108,28 +104,7 @@ public class LevelImp implements LevelInterface {
         weightCalculate.setPositionFinish(positionFinish);
         weightCalculate.calculateWeight(false);
 
-        Weight betterWay = getBetterWay(true);
-
-        return getPosition(betterWay.getMethod());
-    }
-
-    private Weight getBetterWay(boolean isImpossible) {
-        Weight betterWay = null;
-        for (Weight weight : positionFinish.getWinArray()) {
-            if (betterWay == null) {
-                betterWay = weight;
-            }
-            if (weight.getCount() > 1) {
-                betterWay = weight;
-            } else if (weight.getCount() == -1 && betterWay.getCount() != 2 && betterWay.getCount() != -1 && isImpossible) {
-                betterWay = weight;
-            } else if (weight.getCount() == -2) {
-                betterWay = weight;
-                break;
-            }
-
-        }
-        return betterWay;
+        return getPosition(weightCalculate.getBetterWay(true));
     }
 
     private HashMap<String, Integer> getPosition(String method) {
