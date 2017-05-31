@@ -95,21 +95,9 @@ public class LevelImp implements LevelInterface {
         }
 
 
-        String[] splitado = betterWay.getMethod().split(" - ");
-        for (String sp : splitado) {
-            if (TextUtils.isEmpty(boardGame.get(sp))) {
-                position.put("x", Integer.parseInt(sp.split("-")[0]));
-                position.put("y", Integer.parseInt(sp.split("-")[1]));
-                return position;
-            }
-        }
-
-        return easy();
-
+        return getPosition(betterWay.getMethod());
 
     }
-
-
 
     //Impossivel
     private HashMap<String, Integer> hard() {
@@ -125,7 +113,6 @@ public class LevelImp implements LevelInterface {
         }
 
         calculateWeight(false);
-
 
         Weight betterWay = null;
         for (Weight weight : winArray) {
@@ -143,8 +130,12 @@ public class LevelImp implements LevelInterface {
 
         }
 
+        return getPosition(betterWay.getMethod());
+    }
 
-        String[] splited = betterWay.getMethod().split(" - ");
+    private HashMap<String, Integer> getPosition(String method) {
+        HashMap<String, Integer> position = new HashMap<>();
+        String[] splited = method.split(" - ");
         for (String sp : splited) {
             if (TextUtils.isEmpty(boardGame.get(sp))) {
                 position.put("x", Integer.parseInt(sp.split("-")[0]));
@@ -152,10 +143,7 @@ public class LevelImp implements LevelInterface {
                 return position;
             }
         }
-
         return easy();
-
-
     }
 
     private void positionToFinishGame() {
@@ -228,12 +216,10 @@ public class LevelImp implements LevelInterface {
 
     }
 
-
     public void clearHistory() {
         computerHistory = new ArrayList<>();
         humanHistory = new ArrayList<>();
     }
-
 
     private void calculateWeight(boolean isComputer) {
         ArrayList<String> history = isComputer ? computerHistory : humanHistory;
