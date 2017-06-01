@@ -13,29 +13,29 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="Score:" />
+        android:text="Score:"
+        android:textSize="30dp" />
 
     <LinearLayout
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="horizontal">
 
         <TextView
-            android:gravity="left"
             android:id="@+id/human_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="left"
             android:text="Humano: " />
 
         <TextView
-            android:gravity="center"
             android:id="@+id/tie_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="Empate: " />
 
         <TextView
@@ -188,4 +188,9 @@
         android:layout_height="wrap_content"
         android:text="resetar" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Bruno Colombini - 2017 - Desafio Gazeus" />
 </LinearLayout>
